@@ -24,13 +24,13 @@ jobs:
       - name: Make Directory for Results
         run: mkdir -p testResults
 
-      - name: Run Postman Collection
-        run: |
-          npx newman run petstore.collection.json \
-            -r htmlextra \
-            --reporter-htmlextra-export testResults/html.report.html \
-            --reporter-htmlextra-darkTheme
-        continue-on-error: true
+      - name: Run Newman
+        uses: matt-ball/newman-action@master
+        with:
+          collection: petstore.collection.json
+          reporters: cli,htmlextra
+          reporter-htmlextra-export: testResults/html.report.html
+          reporter-htmlextra-darkTheme: true
 
       - name: Upload Test Reports
         uses: actions/upload-artifact@v4
