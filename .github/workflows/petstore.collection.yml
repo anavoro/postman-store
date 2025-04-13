@@ -1,5 +1,4 @@
 name: Run Postman API Tests
-
 on:
   push:
     branches:
@@ -9,7 +8,6 @@ on:
 jobs:
   test-api:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -22,15 +20,16 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          npm install -g newman newman-reporter-htmlextra
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
 
       - name: Make Directory for Results
         run: mkdir -p testResults
 
       - name: Run Postman Collection
         run: |
-          npx newman run petstore.collection.json \
-            -r newman-reporter-htmlextra \
+          newman run petstore.collection.json \
+            -r htmlextra \
             --reporter-htmlextra-export testResults/html.report.html \
             --reporter-htmlextra-darkTheme
         continue-on-error: true
