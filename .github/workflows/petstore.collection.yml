@@ -1,15 +1,12 @@
 name: Run Postman API Tests
-
 on:
   push:
     branches:
       - main
   workflow_dispatch:
-
 jobs:
   test-api:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -30,7 +27,7 @@ jobs:
       - name: Run Postman Collection
         run: |
           npx newman run petstore.collection.json \
-            -r newman-reporter-htmlextra \
+            -r htmlextra \
             --reporter-htmlextra-export testResults/html.report.html \
             --reporter-htmlextra-darkTheme
         continue-on-error: true
