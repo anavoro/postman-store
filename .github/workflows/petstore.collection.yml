@@ -20,7 +20,10 @@ jobs:
           node-version: "18.x"
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install # Install local dependencies
+
+      - name: Install Global Reporter (Test)
+        run: npm install -g newman-reporter-htmlextra
 
       - name: Make Directory for Results
         run: mkdir -p testResults
