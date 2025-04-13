@@ -19,17 +19,17 @@ jobs:
         with:
           node-version: "18.x"
 
-      - name: Install Newman and Reporter
+      - name: Install Dependencies
         run: |
-          npm install -g newman
-          npm install -g newman-reporter-htmlextra
+          npm install newman
+          npm install newman-reporter-htmlextra
 
       - name: Make Directory for Results
         run: mkdir -p testResults
 
       - name: Run Postman Collection
         run: |
-          newman run petstore.collection.json \
+          npx newman run petstore.collection.json \
             -r htmlsextra \
             --reporter-htmlextra-export testResults/html.report.html \
             --reporter-htmlextra-darkTheme
