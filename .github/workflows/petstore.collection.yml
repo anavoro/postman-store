@@ -20,9 +20,7 @@ jobs:
           node-version: "18.x"
 
       - name: Install Dependencies
-        run: |
-          npm install newman
-          npm install newman-reporter-htmlextra
+        run: npm install
 
       - name: Make Directory for Results
         run: mkdir -p testResults
